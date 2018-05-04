@@ -1,3 +1,10 @@
+-- NOTE: TM created this log file of SQL queries for the
+--       films database from the DataCamp Intro to SQL course.
+--       The first few queries were taken directly from the
+--       course. All queries about the Harry Potter films, or
+--       that use WHERE and LIKE, were adapted by TM from
+--       similar queries in the course.
+--
 MariaDB [films]> SELECT COUNT(*)
     -> FROM people;
 +----------+
