@@ -1,0 +1,214 @@
+MariaDB [films]> SELECT COUNT(*)
+    -> FROM people;
++----------+
+| COUNT(*) |
++----------+
+|     8396 |
++----------+
+1 row in set (0.01 sec)
+
+MariaDB [films]> SELECT COUNT(birthdate)
+    -> FROM people;
++------------------+
+| COUNT(birthdate) |
++------------------+
+|             6152 |
++------------------+
+1 row in set (0.02 sec)
+
+MariaDB [films]> SELECT title
+    -> FROM films
+    -> WHERE release_year > 2000
+    -> LIMIT 5;
++------------------------------+
+| title                        |
++------------------------------+
+| 15 Minutes                   |
+| 3000 Miles to Graceland      |
+| A Beautiful Mind             |
+| A Knight's Tale              |
+| A.I. Artificial Intelligence |
++------------------------------+
+5 rows in set (0.01 sec)
+
+MariaDB [films]> SELECT title
+    -> FROM films
+    -> WHERE (release_year=1994) OR (release_year=2000)
+    -> LIMIT 5;
++----------------------------+
+| title                      |
++----------------------------+
+| 3 Ninjas Kick Back         |
+| A Low Down Dirty Shame     |
+| Ace Ventura: Pet Detective |
+| Baby's Day Out             |
+| Beverly Hills Cop III      |
++----------------------------+
+5 rows in set (0.00 sec)
+
+MariaDB [films]> SELECT title
+    -> FROM films
+    -> WHERE (release_year=1994) OR (release_year=1995)
+    -> AND (certification='PG' OR certification='R')
+    -> LIMIT 5;
++----------------------------+
+| title                      |
++----------------------------+
+| 3 Ninjas Kick Back         |
+| A Low Down Dirty Shame     |
+| Ace Ventura: Pet Detective |
+| Baby's Day Out             |
+| Beverly Hills Cop III      |
++----------------------------+
+5 rows in set (0.00 sec)
+
+MariaDB [films]> SELECT title
+    -> FROM films
+    -> WHERE release_year BETWEEN 1995 AND 2000
+    -> LIMIT 5;
++--------------------------------+
+| title                          |
++--------------------------------+
+| Ace Ventura: When Nature Calls |
+| Apollo 13                      |
+| Assassins                      |
+| Babe                           |
+| Bad Boys                       |
++--------------------------------+
+5 rows in set (0.00 sec)
+
+MariaDB [films]> SELECT title
+    -> FROM films
+    -> WHERE release_year IN (1996, 1998, 2001, 2003)
+    -> LIMIT 5;
++-----------------------------------+
+| title                             |
++-----------------------------------+
+| A Thin Line Between Love and Hate |
+| A Time to Kill                    |
+| Albino Alligator                  |
+| Basquiat                          |
+| Beavis and Butt-Head Do America   |
++-----------------------------------+
+5 rows in set (0.00 sec)
+
+MariaDB [films]> SELECT COUNT(name)
+    -> FROM people
+    -> WHERE deathdate IS NULL;
++-------------+
+| COUNT(name) |
++-------------+
+|        7609 |
++-------------+
+1 row in set (0.00 sec)
+
+MariaDB [films]> SELECT COUNT(name)
+    -> FROM people
+    -> WHERE birthdate IS NOT NULL;
++-------------+
+| COUNT(name) |
++-------------+
+|        6152 |
++-------------+
+1 row in set (0.01 sec)
+
+MariaDB [films]> SELECT title, release_year
+    -> FROM films
+    -> WHERE title LIKE 'Harry Potter%';
++-----------------------------------------------+--------------+
+| title                                         | release_year |
++-----------------------------------------------+--------------+
+| Harry Potter and the Sorcerer's Stone         |         2001 |
+| Harry Potter and the Chamber of Secrets       |         2002 |
+| Harry Potter and the Prisoner of Azkaban      |         2004 |
+| Harry Potter and the Goblet of Fire           |         2005 |
+| Harry Potter and the Order of the Phoenix     |         2007 |
+| Harry Potter and the Half-Blood Prince        |         2009 |
+| Harry Potter and the Deathly Hallows: Part I  |         2010 |
+| Harry Potter and the Deathly Hallows: Part II |         2011 |
++-----------------------------------------------+--------------+
+8 rows in set (0.00 sec)
+
+MariaDB [films]> SELECT title, release_year
+    -> FROM films
+    -> WHERE title LIKE '_est%'
+    -> LIMIT 5;
++---------------------+--------------+
+| title               | release_year |
++---------------------+--------------+
+| West Side Story     |         1961 |
+| Best in Show        |         2000 |
+| Yesterday Was a Lie |         2008 |
+| Restless            |         2012 |
+| Destiny             |         2014 |
++---------------------+--------------+
+5 rows in set (0.01 sec)
+
+MariaDB [films]> SELECT COUNT(title)
+    -> FROM films
+    -> WHERE title LIKE '_est%';
++--------------+
+| COUNT(title) |
++--------------+
+|            7 |
++--------------+
+1 row in set (0.01 sec)
+
+MariaDB [films]> SELECT SUM(budget)
+    -> FROM films
+    -> WHERE title LIKE 'Harry Potter%';
++-------------+
+| SUM(budget) |
++-------------+
+|   905000000 |
++-------------+
+1 row in set (0.01 sec)
+
+MariaDB [films]> SELECT MIN(gross)
+    -> FROM films
+    -> WHERE title LIKE 'Harry Potter%';
++------------+
+| MIN(gross) |
++------------+
+|  249358727 |
++------------+
+1 row in set (0.02 sec)
+
+MariaDB [films]> SELECT MAX(gross)
+    -> FROM films
+    -> WHERE title LIKE 'Harry Potter%';
++------------+
+| MAX(gross) |
++------------+
+|  317557891 |
++------------+
+1 row in set (0.00 sec)
+
+MariaDB [films]> SELECT title, (gross-budget) AS net_profit
+    -> FROM films
+    -> WHERE (title LIKE 'Harry Potter%')
+    -> AND (gross-budget) IS NOT NULL;
++-------------------------------------------+------------+
+| title                                     | net_profit |
++-------------------------------------------+------------+
+| Harry Potter and the Sorcerer's Stone     |  192557891 |
+| Harry Potter and the Chamber of Secrets   |  161970615 |
+| Harry Potter and the Prisoner of Azkaban  |  119358727 |
+| Harry Potter and the Goblet of Fire       |  139994397 |
+| Harry Potter and the Order of the Phoenix |  142000866 |
+| Harry Potter and the Half-Blood Prince    |   51956980 |
++-------------------------------------------+------------+
+6 rows in set (0.01 sec)
+
+MariaDB [films]> SELECT SUM(gross-budget) AS tot_net_profit
+    -> FROM films
+    -> WHERE (title LIKE 'Harry Potter%')
+    -> AND (gross-budget) IS NOT NULL;
++----------------+
+| tot_net_profit |
++----------------+
+|      807839476 |
++----------------+
+1 row in set (0.00 sec)
+
+MariaDB [films]> quit
