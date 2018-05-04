@@ -1,3 +1,10 @@
+-- NOTE: TM created this MySQL dump of the films database from the
+--       DataCamp Intro to SQL course. However, it was necessary to
+--       first create a MariaDB-compatible database from the DataCamp
+--       PostgreSQL version of the database. Then it was possible to
+--       create the MariaDB-compatible backup of the database contained
+--       in this file.
+--
 -- MySQL dump 10.15  Distrib 10.0.34-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: films
