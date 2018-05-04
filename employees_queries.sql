@@ -1,6 +1,6 @@
 -------------------------------------------
--- SQL Queries of the databased from  
--- the Linux 101 SQL Tutorial 
+-- SQL Queries of the database from  
+-- the IBM Linux 101 SQL Tutorial 
 -------------------------------------------
 USE employees;
 
